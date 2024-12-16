@@ -20,6 +20,13 @@ class LoginController extends Controller
         // TODO: remember me 
 
         if (Auth::attempt($cre,$remember)) {
+            if ($remember) {
+                setcookie("email",$request->get('email',''),time()+3600);
+                setcookie("password",$request->get('password',''),time()+3600);
+            } else {
+                setcookie('email','');
+                setcookie('password','');
+            }
             return redirect()->route('dashboard')->with('success','Login successfully !');
         } else{
             return redirect()->route('login');

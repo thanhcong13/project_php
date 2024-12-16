@@ -26,18 +26,29 @@
                     <h3 class="text-center text-dark">Login</h3>
                     <div class="form-group">
                         <label for="email" class="text-dark">Email:</label><br>
-                        <input type="email" name="email" id="email" class="form-control">
+                        <input type="email" name="email" id="email" class="form-control" 
+                            @if (isset($_COOKIE['email']))
+                                value="{{$_COOKIE['email']}}"
+                            @endif
+                        >
                     </div>
                     <div class="form-group mt-3">
                         <label for="password" class="text-dark">Password:</label><br>
-                        <input type="password" name="password" id="password" class="form-control">
+                        <input type="password" name="password" id="password" class="form-control"
+                            @if ( isset($_COOKIE['password']) )
+                                value="{{ $_COOKIE['password'] }}"
+                            @endif
+                        >
                     </div>
                     <div class="form-group">
-                        
-                        <label for="remember" class="text-dark"></label>
-                        <input type="checkbox" name="remember" id="remember">
-                        <br>
-                        <br>
+                        <div class="d-flex my-2" style="gap: 20px">
+                            <input type="checkbox" name="remember" id="remember"
+                            @if ( isset($_COOKIE['email']) )
+                                checked
+                            @endif
+                        >
+                        <label for="remember" class="text-dark">Remember me</label>
+                        </div>
                         <input type="submit" name="submit" class="btn btn-dark btn-md" value="submit">
                     </div>
                     <div class="text-right mt-2">

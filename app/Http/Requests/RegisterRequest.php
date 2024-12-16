@@ -27,7 +27,20 @@ class RegisterRequest extends FormRequest
         // TODO: Remember me
         return [
             'name'=>'required',
-            'email' => 'required|email|unique:users,email',
+            'email' => [
+            'required',
+            'email',
+            function ($attribute, $value, $fail) {
+                $parts = explode('@', $value);
+                if ( count($parts) !== 2 || str_contains($parts[0], '.') || str_contains($parts[0], '/') ) {
+                    $fail(':attribute không chứa "." or "/" trước "@"');
+                }
+
+                if ( !str_ends_with($parts[1], '.com') ) {
+                    $fail(':attribute phải kết thúc là ".com"');
+                }
+            }
+        ],
             'password' => 'required|min:6',
             'confirm-password'=> 'required|same:password',
         ];
@@ -35,16 +48,15 @@ class RegisterRequest extends FormRequest
 
     public function messages()
     {
-        // TODO: E tao file constant de dinh nghia format message
         return [
-            'name.required' => 'Khong tim thay name',
-            'email.required' => 'Email is required!',
-            'email.email' => 'Email address',
-            'email.unique' => 'Email is only!',
-            'password.required' => 'Password is required!',
-            'password.min' => 'Password is too short',
+            'name.required' => 'Tên là bắt buộc.',
+            'email.required' => 'Email là bắt buộc.',
+            'email.email' => 'Email phải là địa chỉ email hợp lệ.',
+            'email' => 'Email không hợp lệ theo định dạng yêu cầu (A@B, A không chứa dấu . hoặc /, B phải kết thúc bằng .com).',
+            'password.required' => 'Mật khẩu là bắt buộc.',
+            'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự.',
+            'confirm-password.required' => 'Xác nhận mật khẩu là bắt buộc.',
+            'confirm-password.same' => 'Xác nhận mật khẩu không khớp.',
         ];
-
-        // *.required :attribute khong tim thay 
     }
 }

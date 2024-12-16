@@ -26,7 +26,7 @@ class LoginRequest extends FormRequest
         // TODO: Tao new Rule: A@B  A: khog bao gom . +  /  B: .com 
         return [
             'email' =>'required|email',
-            'password' =>'required'
+            'password' =>'required',
         ];
     }
 }
