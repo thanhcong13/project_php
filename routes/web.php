@@ -24,7 +24,7 @@ Route::get('/',[DashboardController::class, 'index'])->name('dashboard')->middle
 Route::post('/idea',[IdeaController::class, 'insert'])->name('idea.create');
 Route::delete('/idea/{id}',[IdeaController::class, 'delete'])->name('idea.delete');
 
-Route::get('/profile',[ProfileController::class, 'index']);
+Route::get('/profile',[ProfileController::class, 'index'])->name('profile')->middleware('auth');
 
 Route::get('/login',[LoginController::class, 'index'])->name('login');
 Route::get('/logout',[LoginController::class, 'signOut'])->name('logout');

@@ -15,32 +15,11 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-bottom-dark ticky-top bg-body-tertiary"
-        data-bs-theme="dark">
-        <div class="container">
-            <a class="navbar-brand fw-light" href="/"><span class="fas fa-brain me-1"> </span>Ideas</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/profile">Profile</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+   @include('layout.nav')
 
     <div class="container">
         <div class="row justify-content-center">
+            @include('shared.error-message')
             <div class="col-12 col-sm-8 col-md-6">
                 <form class="form mt-5" action="{{route('register.user')}}" method="post">
                     @csrf
@@ -78,7 +57,7 @@
                         <button type="submit" name="submit" class="btn btn-dark btn-md" >Submit</button>
                     </div>
                     <div class="text-right mt-2">
-                        <a href="/login" class="text-dark">Login here</a>
+                        <a href="{{route('login')}}" class="text-dark">Login here</a>
                     </div>
                 </form>
             </div>
