@@ -24,7 +24,6 @@
         <p class="fs-6 fw-light text-muted">
             <!-- TODO: Phan biet 2 cai duoi --> 
             {{ $idea->content }}
-            {!! $idea->content !!}
         </p>
         <div class="d-flex justify-content-between">
             <div>

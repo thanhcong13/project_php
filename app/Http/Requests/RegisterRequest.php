@@ -28,6 +28,7 @@ class RegisterRequest extends FormRequest
             'name'=>'required',
             'email' => [
             'required',
+            'unique:users,email',
             'email',
             new CustomLoginValidate('cus_email')
             // function ($attribute, $value, $fail) {
@@ -56,6 +57,7 @@ class RegisterRequest extends FormRequest
             'name.required' => trans('vi_validation.required'),
             'email.required' => 'Email là bắt buộc.',
             'email.email' => 'Email phải là địa chỉ email hợp lệ.',
+            'email.unique' => 'Email da ton tai.',
             'email' => 'Email không hợp lệ theo định dạng yêu cầu (A@B, A không chứa dấu . hoặc /, B phải kết thúc bằng .com).',
             'password.required' => 'Mật khẩu là bắt buộc.',
             'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự.',

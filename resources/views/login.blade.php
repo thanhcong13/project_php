@@ -21,6 +21,7 @@
         <div class="row justify-content-center">
             <div class="col-12 col-sm-8 col-md-6">
                 @include('shared.success-message')
+                @include('shared.error-message')
                 <form class="form mt-5" action="{{ route('login.user') }}" method="POST">
                     @csrf
                     <h3 class="text-center text-dark">Login</h3>
@@ -31,6 +32,9 @@
                                 value="{{$_COOKIE['email']}}"
                             @endif
                         >
+                        @error('email')
+                        <span class="fs-6 text-danger"> {{ $message}} </span>
+                        @enderror
                     </div>
                     <div class="form-group mt-3">
                         <label for="password" class="text-dark">Password:</label><br>
@@ -39,6 +43,9 @@
                                 value="{{ $_COOKIE['password'] }}"
                             @endif
                         >
+                        @error('password')
+                        <span class="fs-6 text-danger"> {{ $message}} </span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <div class="d-flex my-2" style="gap: 20px">

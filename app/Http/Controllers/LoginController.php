@@ -21,7 +21,14 @@ class LoginController extends Controller
 
     public function store(LoginRequest $request)
     {
-        $cre = $request->only('email', 'password');
+         $cre = $request->only('email', 'password');
+        // $cre['email'] = $request->get('email');
+        // $cre['password'] = $request->get('password');
+        
+        // if (!Auth::attempt($request->only('email', 'password'))) {
+        //     return response()->json(['error' => 'Sai email or mật khẩu.'], 401);
+        // }
+        
 
         $remember = $request->has('remember');
         // TODO: remember me 
@@ -36,7 +43,7 @@ class LoginController extends Controller
             }
             return redirect()->route('dashboard')->with('success', 'Login successfully !');
         } else {
-            return redirect()->route('login');
+            return redirect()->route('login')->with('error', 'Login False !');
         }
     }
 
