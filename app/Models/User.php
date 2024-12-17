@@ -42,9 +42,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function createTokenWithOAuth(array $scopes)
-    {
-        return $this->createToken('oauth-token', $scopes);
-    }
+    
     
 }
