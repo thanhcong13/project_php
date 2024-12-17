@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CustomLoginValidate;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
@@ -23,33 +24,36 @@ class RegisterRequest extends FormRequest
      */
     public function rules()
     {
-
-        // TODO: Remember me
-        return [
+        return[
             'name'=>'required',
             'email' => [
             'required',
             'email',
-            function ($attribute, $value, $fail) {
-                $parts = explode('@', $value);
-                if ( count($parts) !== 2 || str_contains($parts[0], '.') || str_contains($parts[0], '/') ) {
-                    $fail(':attribute không chứa "." or "/" trước "@"');
-                }
+            new CustomLoginValidate('cus_email')
+            // function ($attribute, $value, $fail) {
+            //     $parts = explode('@', $value);
+            //     if (count($parts) !== 2 || str_contains($parts[0], '.') || str_contains($parts[0], '/')) {
+            //         $fail(':attribute không chứa "." hoặc "/" trước "@"');
+            //     }
 
-                if ( !str_ends_with($parts[1], '.com') ) {
-                    $fail(':attribute phải kết thúc là ".com"');
-                }
-            }
-        ],
-            'password' => 'required|min:6',
+            //     if (!str_ends_with($parts[1], '.com')) {
+            //         $fail(':attribute phải kết thúc là ".com"');
+            //     }
+            // }
+            ],
+            'password' => [
+                'required',
+                'min:6',
+                'no_spaces'
+            ],
             'confirm-password'=> 'required|same:password',
         ];
     }
 
     public function messages()
     {
-        return [
-            'name.required' => 'Tên là bắt buộc.',
+        return[
+            'name.required' => trans('vi_validation.required'),
             'email.required' => 'Email là bắt buộc.',
             'email.email' => 'Email phải là địa chỉ email hợp lệ.',
             'email' => 'Email không hợp lệ theo định dạng yêu cầu (A@B, A không chứa dấu . hoặc /, B phải kết thúc bằng .com).',
