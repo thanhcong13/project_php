@@ -24,9 +24,10 @@ Route::get('/',[DashboardController::class, 'index'])->name('dashboard')->middle
 
 Route::get('feed',[FeedController::class, 'index'])->name('feed')->middleware('auth');
 
-Route::post('/ideas', [IdeaController::class, 'store'])->name('ideas.store');
-
-Route::delete('/idea/{id}',[IdeaController::class, 'delete'])->name('idea.delete');
+Route::get('/ideas/{id}', [IdeaController::class, 'index'])->name('ideas.index');
+Route::post('/ideas/create', [IdeaController::class, 'store'])->name('ideas.store');
+Route::delete('/ideas/delete/{id}',[IdeaController::class, 'delete'])->name('ideas.delete');
+Route::put('/ideas/update/{id}',[IdeaController::class, 'update'])->name('ideas.update');
 
 Route::get('/profile',[ProfileController::class, 'index'])->name('profile')->middleware('auth');
 

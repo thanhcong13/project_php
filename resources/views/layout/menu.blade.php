@@ -7,25 +7,10 @@
                         <span>Home</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span>Explore</span></a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{ route('feed') }}">
                         <span>Feed</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span>Terms</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span>Support</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span>Settings</span></a>
-                </li>
+               
             </ul>
         </div>
         <div class="card-footer text-center py-2">

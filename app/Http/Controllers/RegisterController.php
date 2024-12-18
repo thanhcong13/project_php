@@ -30,13 +30,6 @@ class RegisterController extends Controller
             $password = $request->get('password');
             $confirm_password = $request->get('confirm-password');
             $password = bcrypt($request->get('password'));
-            // $confirm_password = bcrypt($request->get('confirm-password'));
-            // Repository + Model 
-            // User::create([
-            //     'name' => $name,
-            //     'email' => $email,
-            //     'password' => $password
-            // ]);
             $this->registerService->create(
                 [
                 'name' =>$name,
