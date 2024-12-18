@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Constants\ValidationMessages;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\CustomLoginValidate;
 
@@ -36,10 +37,6 @@ class LoginRequest extends FormRequest
     }
     public function messages()
     {
-        return[
-            'email.required' => trans('vi_validation.required'),
-            'email.email' => trans('vi_validation.email'),
-            'password.required' => trans('vi_validation.required'),
-        ];
+        return ValidationMessages::MESSAGES;
     }
 }

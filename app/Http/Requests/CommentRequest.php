@@ -2,11 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Constants\ValidationMessages;
+use Illuminate\Foundation\Http\FormRequest;
 
-
-class IdeaRequest extends FormRequest
+class CommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +25,10 @@ class IdeaRequest extends FormRequest
     public function rules()
     {
         return [
-            'idea' => 'required'
+            'comment' => 'required'
         ];
     }
+
     public function messages()
     {
         return ValidationMessages::MESSAGES;
