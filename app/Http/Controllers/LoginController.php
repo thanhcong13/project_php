@@ -21,17 +21,9 @@ class LoginController extends Controller
 
     public function store(LoginRequest $request)
     {
-         $cre = $request->only('email', 'password');
-        // $cre['email'] = $request->get('email');
-        // $cre['password'] = $request->get('password');
-        
-        // if (!Auth::attempt($request->only('email', 'password'))) {
-        //     return response()->json(['error' => 'Sai email or mật khẩu.'], 401);
-        // }
-        
+        $cre = $request->only('email', 'password');
 
         $remember = $request->has('remember');
-        // TODO: remember me 
 
         if (Auth::attempt($cre, $remember)) {
             if ($remember) {
@@ -49,20 +41,20 @@ class LoginController extends Controller
 
     public function loginApi(LoginRequest $request)
     {
-            $user = User::where('email', $request->get('email'))->first();
-            if ($user && Hash::check($request->get('password'), $user->password)) {
-                $token = $user->createToken('token')->plainTextToken;
-        
-                return response()->json([
-                    'message' => 'Login successful',
-                    'token' => $token,
-                    'user' => $user
-                ], 200);
-            }
-        
+        $user = User::where('email', $request->get('email'))->first();
+        if ($user && Hash::check($request->get('password'), $user->password)) {
+            $token = $user->createToken('token')->plainTextToken;
+
             return response()->json([
-                'error' => 'Unauthorised'
-            ], 401);
+                'message' => 'Login successful',
+                'token' => $token,
+                'user' => $user
+            ], 200);
+        }
+
+        return response()->json([
+            'error' => 'Unauthorised'
+        ], 401);
     }
 
     public function signOut()

@@ -37,9 +37,9 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return[
-            'email.required' => 'Email là bắt buộc.',
-            'email.email' => 'Email khong dung dinh dang.',
-            'password.required' => 'Mật khẩu là bắt buộc.',
+            'email.required' => trans('vi_validation.required'),
+            'email.email' => trans('vi_validation.email'),
+            'password.required' => trans('vi_validation.required'),
         ];
     }
 }

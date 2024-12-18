@@ -31,16 +31,6 @@ class RegisterRequest extends FormRequest
             'unique:users,email',
             'email',
             new CustomLoginValidate('cus_email')
-            // function ($attribute, $value, $fail) {
-            //     $parts = explode('@', $value);
-            //     if (count($parts) !== 2 || str_contains($parts[0], '.') || str_contains($parts[0], '/')) {
-            //         $fail(':attribute không chứa "." hoặc "/" trước "@"');
-            //     }
-
-            //     if (!str_ends_with($parts[1], '.com')) {
-            //         $fail(':attribute phải kết thúc là ".com"');
-            //     }
-            // }
             ],
             'password' => [
                 'required',
@@ -55,14 +45,13 @@ class RegisterRequest extends FormRequest
     {
         return[
             'name.required' => trans('vi_validation.required'),
-            'email.required' => 'Email là bắt buộc.',
-            'email.email' => 'Email phải là địa chỉ email hợp lệ.',
-            'email.unique' => 'Email da ton tai.',
-            'email' => 'Email không hợp lệ theo định dạng yêu cầu (A@B, A không chứa dấu . hoặc /, B phải kết thúc bằng .com).',
-            'password.required' => 'Mật khẩu là bắt buộc.',
-            'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự.',
-            'confirm-password.required' => 'Xác nhận mật khẩu là bắt buộc.',
-            'confirm-password.same' => 'Xác nhận mật khẩu không khớp.',
+            'email.required' => trans('vi_validation.required'),
+            'email.email' => trans('vi_validation.email'),
+            'email.unique' => trans('vi_validation.unique'),
+            'password.required' =>  trans('vi_validation.required'),
+            'password.min' =>  trans('vi_validation.min'),
+            'confirm-password.required' =>  trans('vi_validation.required'),
+            'confirm-password.same' =>  trans('vi_validation.same'),
         ];
     }
 }

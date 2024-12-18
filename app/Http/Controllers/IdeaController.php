@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\IdeaRequest;
 use Illuminate\Http\Request;
 use App\Models\Idea;
-
+use Illuminate\Support\Facades\Log;
 
 class IdeaController extends Controller
 {
-    public function insert(Request $request)
+    public function store(IdeaRequest $request)
     {
-        request()->validate([
-            'idea' => 'required|min:5'
-        ]);
-        $data = $request->input('idea');
-        $idea = Idea::create([
-            'content' => $data
-        ]);
+        $data['content'] = $request->input('idea');
+        $data['user_id'] = auth()->user()->id;
+        $idea = Idea::create($data);
+
         return redirect()->route('dashboard')->with('success','Idea created Successfully');
     }
     public function delete($id){

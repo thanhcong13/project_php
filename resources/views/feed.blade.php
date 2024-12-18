@@ -5,16 +5,7 @@
         @include('layout.menu')
         <div class="col-6">
             @include('shared.success-message')
-            <hr>
-            <div class="mt-3">
-                @foreach ($ideas as $idea)
-                    @include('shared.idea-card')
-                @endforeach
-                <div class="mt-1">
-                    {{ $ideas->links() }}
-                </div>
-                
-            </div>
+            @include('shared.submit-idea')
         </div>
         <div class="col-3">
             <div class="card">
