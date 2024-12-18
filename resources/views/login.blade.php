@@ -15,49 +15,51 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-bottom-dark ticky-top bg-body-tertiary"
-        data-bs-theme="dark">
-        <div class="container">
-            <a class="navbar-brand fw-light" href="/"><span class="fas fa-brain me-1"> </span>Ideas</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/profile">Profile</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+   @include('layout.nav')
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-8 col-md-6">
-                <form class="form mt-5" action="" method="post">
+                @include('shared.success-message')
+                @include('shared.error-message')
+                <form class="form mt-5" action="{{ route('login.user') }}" method="POST">
+                    @csrf
                     <h3 class="text-center text-dark">Login</h3>
                     <div class="form-group">
                         <label for="email" class="text-dark">Email:</label><br>
-                        <input type="email" name="email" id="email" class="form-control">
+                        <input type="email" name="email" id="email" class="form-control" 
+                            @if (isset($_COOKIE['email']))
+                                value="{{$_COOKIE['email']}}"
+                            @endif
+                        >
+                        @error('email')
+                        <span class="fs-6 text-danger"> {{ $message}} </span>
+                        @enderror
                     </div>
                     <div class="form-group mt-3">
                         <label for="password" class="text-dark">Password:</label><br>
-                        <input type="text" name="password" id="password" class="form-control">
+                        <input type="password" name="password" id="password" class="form-control"
+                            @if ( isset($_COOKIE['password']) )
+                                value="{{ $_COOKIE['password'] }}"
+                            @endif
+                        >
+                        @error('password')
+                        <span class="fs-6 text-danger"> {{ $message}} </span>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="remember-me" class="text-dark"></label><br>
+                        <div class="d-flex my-2" style="gap: 20px">
+                            <input type="checkbox" name="remember" id="remember"
+                            @if ( isset($_COOKIE['email']) )
+                                checked
+                            @endif
+                        >
+                        <label for="remember" class="text-dark">Remember me</label>
+                        </div>
                         <input type="submit" name="submit" class="btn btn-dark btn-md" value="submit">
                     </div>
                     <div class="text-right mt-2">
-                        <a href="/register" class="text-dark">Register here</a>
+                        <a href="{{route('register')}}" class="text-dark">Register here</a>
                     </div>
                 </form>
             </div>

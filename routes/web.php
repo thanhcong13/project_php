@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FeedController;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,16 +20,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[DashboardController::class, 'index'])->name('dashboard');
+Route::get('/',[DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
-Route::post('/idea',[IdeaController::class, 'insert'])->name('idea.create');
+Route::get('feed',[FeedController::class, 'index'])->name('feed')->middleware('auth');
+
+Route::post('/ideas', [IdeaController::class, 'store'])->name('ideas.store');
+
 Route::delete('/idea/{id}',[IdeaController::class, 'delete'])->name('idea.delete');
 
-Route::get('/profile',[ProfileController::class, 'index']);
+Route::get('/profile',[ProfileController::class, 'index'])->name('profile')->middleware('auth');
 
-Route::get('/login',[LoginController::class, 'index']);
+Route::get('/login',[LoginController::class, 'index'])->name('login');
+Route::get('/logout',[LoginController::class, 'signOut'])->name('logout');
+Route::post('/login-user',[LoginController::class, 'store'])->name('login.user');
 
-Route::get('/register',[RegisterController::class, 'index']);
+Route::get('/register',[RegisterController::class, 'index'])->name('register');
+Route::post('/register-user',[RegisterController::class, 'register'])->name('register.user');
+
 
 Route::get('/layout', function(){
     return view('layout.layout');
