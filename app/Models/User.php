@@ -42,7 +42,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
 
     public function idea()
     {
@@ -52,5 +52,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
-    
+    public function like()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function isLike () {
+
+    }
+
 }

@@ -21,7 +21,6 @@ class CreateIdeasTable extends Migration
             $table->id();
             $table->string('content');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->unsignedInteger('likes')->default(0);
             $table->timestamps();
         });
     }

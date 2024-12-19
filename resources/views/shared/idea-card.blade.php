@@ -11,10 +11,12 @@
                 </div>
             </div>
             <div class="d-flex">
-                <form action="{{ route('ideas.index', $idea->id) }}" method="GET">
-                    @csrf
-                    <button class="btn btn-sm">Edit</button>
-                </form>
+                @if (Auth::user()->id == $idea->user_id)
+                    <form action="{{ route('ideas.index', $idea->id) }}" method="GET">
+                        @csrf
+                        <button class="btn btn-sm">Edit</button>
+                    </form>
+                @endif
                 <form action="{{ route('ideas.delete', $idea->id) }}" method="POST">
                     @csrf
                     @method('delete')
@@ -31,44 +33,30 @@
         </p>
         <div class="d-flex justify-content-between">
             <div>
-                <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-heart me-1">
-                    </span>{{$idea->likes}} </a>
+                @if ($idea->isLikedBy(auth()->user()))
+                    <form action="{{ route('ideas.idea.unlike', $idea->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="fw-light nav-link fs-6"> 
+                            <span class="fas fa-heart me-1" style="color: #ec1818"></span>{{ $idea->like->count() }}
+                        </button>
+                    </form>
+                @else 
+                    <form action="{{ route('ideas.idea.like', $idea->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="fw-light nav-link fs-6"> 
+                            <span class="fas fa-heart me-1" style="color: #ec1818"></span>{{ $idea->like->count() }}
+                        </button>
+                    </form>
+                @endif
             </div>
+            
             <div>
                 <span class="fs-6 fw-light text-muted"> <span class="fas fa-clock"> </span>
                     {{$idea->created_at}} </span>
             </div>
         </div>
         <div>
-            <div class="mb-3">
-                <textarea class="fs-6 form-control" rows="1"></textarea>
-            </div>
-            <div>
-                <button class="btn btn-primary btn-sm"> Post Comment </button>
-            </div>
-
-            <hr>
-            <div class="d-flex align-items-start">
-                <img style="width:35px" class="me-2 avatar-sm rounded-circle"
-                    src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Luigi"
-                    alt="Luigi Avatar">
-                <div class="w-100">
-                    <div class="d-flex justify-content-between">
-                        <h6 class="">Luigi
-                        </h6>
-                        <small class="fs-6 fw-light text-muted"> 3 hour
-                            ago</small>
-                    </div>
-                    <p class="fs-6 mt-3 fw-light">
-                        and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and
-                        Evil)
-                        by
-                        Cicero, written in 45 BC. This book is a treatise on the theory of ethics,
-                        very
-                        popular during the Renaissan
-                    </p>
-                </div>
-            </div>
+            @include('shared.comment')
         </div>
     </div>
 </div>
