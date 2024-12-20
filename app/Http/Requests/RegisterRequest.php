@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Constants\ValidationMessages;
 use App\Rules\CustomLoginValidate;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -43,15 +44,6 @@ class RegisterRequest extends FormRequest
 
     public function messages()
     {
-        return[
-            'name.required' => trans('vi_validation.required'),
-            'email.required' => trans('vi_validation.required'),
-            'email.email' => trans('vi_validation.email'),
-            'email.unique' => trans('vi_validation.unique'),
-            'password.required' =>  trans('vi_validation.required'),
-            'password.min' =>  trans('vi_validation.min'),
-            'confirm-password.required' =>  trans('vi_validation.required'),
-            'confirm-password.same' =>  trans('vi_validation.same'),
-        ];
+       return ValidationMessages::MESSAGES;
     }
 }

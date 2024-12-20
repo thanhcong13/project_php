@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Constants\ValidationMessages;
+
 
 class IdeaRequest extends FormRequest
 {
@@ -27,4 +29,9 @@ class IdeaRequest extends FormRequest
             'idea' => 'required'
         ];
     }
+    public function messages()
+    {
+        return ValidationMessages::MESSAGES;
+    }
+
 }
