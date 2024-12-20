@@ -10,7 +10,6 @@
                     <a class="nav-link" href="{{ route('feed') }}">
                         <span>Feed</span></a>
                 </li>
-               
             </ul>
         </div>
         <div class="card-footer text-center py-2">

@@ -33,4 +33,5 @@ class IdeaRequest extends FormRequest
     {
         return ValidationMessages::MESSAGES;
     }
+
 }

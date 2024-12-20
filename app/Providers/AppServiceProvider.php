@@ -53,7 +53,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ILikeRepository::class, LikeRepository::class);
 
 
-
     }
 
     /**

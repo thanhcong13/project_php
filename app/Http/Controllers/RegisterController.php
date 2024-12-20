@@ -25,7 +25,6 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request)
     {
         try {
-
             $name = $request->get('name');
             $email = $request->get('email');
             $password = $request->get('password');

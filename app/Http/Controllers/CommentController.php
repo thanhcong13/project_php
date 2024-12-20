@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
 use App\Models\Idea;
 use App\Services\Comment\ICommentService;
 use Exception;
-use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+
     protected $commentService;
     public function __construct(ICommentService $commentService)
     {
@@ -56,4 +57,5 @@ class CommentController extends Controller
         }
 
     }
+
 }
