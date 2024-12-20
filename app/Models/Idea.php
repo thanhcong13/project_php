@@ -17,6 +17,7 @@ class Idea extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     public function comment()
     {
         return $this->hasMany(Comment::class);
@@ -28,5 +29,5 @@ class Idea extends Model
     public function isLikedBy(User $user)
     {
         return $this->like->contains('user_id', $user->id);
-    }
+    }   
 }

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+
 use App\Repositories\Comment\CommentRepository;
 use App\Repositories\Comment\ICommentRepository;
 use App\Repositories\Dashboard\DashboardRepository;
@@ -40,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IRegisterRepository::class, RegisterRepository::class);
         $this->app->bind(IRegisterService::class, RegisterService::class);
 
+
         $this->app->bind(ICommentService::class, CommentService::class);
         $this->app->bind(ICommentRepository::class, CommentRepository::class);
 
@@ -51,8 +53,6 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(ILikeService::class, LikeService::class);
         $this->app->bind(ILikeRepository::class, LikeRepository::class);
-
-
 
     }
 

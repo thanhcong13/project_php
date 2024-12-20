@@ -43,7 +43,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
     public function idea()
     {
         return $this->hasMany(Idea::class);
@@ -52,6 +51,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+
     public function like()
     {
         return $this->hasMany(Like::class);
@@ -60,5 +60,4 @@ class User extends Authenticatable
     public function isLike () {
 
     }
-
 }
