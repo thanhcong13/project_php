@@ -3,11 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Constants\ValidationMessages;
-
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\CustomLoginValidate;
 
-class LoginRequest extends FormRequest
+class CommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,16 +24,11 @@ class LoginRequest extends FormRequest
      */
     public function rules()
     {
-        // TODO: Tao new Rule: A@B  A: khog bao gom . +  /  B: .com 
         return [
-            'email' =>[
-                'required',
-                'email',
-                new CustomLoginValidate('cus_email')
-            ],
-            'password' =>'required',
+            'comment' => 'required'
         ];
     }
+
     public function messages()
     {
         return ValidationMessages::MESSAGES;
