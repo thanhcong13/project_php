@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LoginController;
 use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
@@ -22,4 +23,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'auth'], function () {
     Route::post('/login-api', [LoginController::class, 'loginApi']);
+});
+
+Route::group(['prefix' => 'comment'], function () {
+    Route::post('/create-api', [CommentController::class, 'storeApi']);
 });

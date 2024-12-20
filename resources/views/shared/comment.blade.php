@@ -1,12 +1,12 @@
-<form action="{{ route('ideas.comments.store' , $idea->id) }}" method="POST">
-    @csrf
+{{-- <form action="{{ route('ideas.comments.store' , $idea->id) }}" method="POST">
+    @csrf --}}
     <div class="mb-3">
-        <textarea name="comment" class="fs-6 form-control" rows="1"></textarea>
+        <textarea id="name_Comment" data-comment-id="{{ $idea->id }}" name="comment" class="fs-6 form-control name_Comment" rows="1"></textarea>
     </div>
     <div>
-        <button type="submit" class="btn btn-primary btn-sm"> Post Comment </button>
+        <button type="submit" data-comment-id="{{ $idea->id }}" class="btn btn-primary btn-sm btn-comment"> Post Comment </button>
     </div>
-</form>
+{{-- </form> --}}
 <hr>
 @foreach ($idea->comment as $comment)
     <div class="d-flex align-items-start">
