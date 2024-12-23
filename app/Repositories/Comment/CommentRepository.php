@@ -13,10 +13,11 @@ class CommentRepository implements ICommentRepository
     }   
     public function store(array $idea)
     {
-        $this->comment->user_id = $idea['user_id'];
-        $this->comment->idea_id = $idea['idea_id'];
-        $this->comment->comment = $idea['comment'];
-        $this->comment->save();
+        $this->comment->create([
+            'user_id' => $idea['user_id'],
+            'idea_id' => $idea['idea_id'],
+            'comment' => $idea['comment'],
+        ]);
         
     }
 }

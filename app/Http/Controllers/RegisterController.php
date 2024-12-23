@@ -26,6 +26,7 @@ class RegisterController extends Controller
     {
         try {
 
+
             $name = $request->get('name');
             $email = $request->get('email');
             $password = $request->get('password');
@@ -45,18 +46,5 @@ class RegisterController extends Controller
             return redirect()->route('register')->with('error', 'Created user false !');
         }
 
-            $this->registerService->create(
-                [
-                'name' =>$name,
-                'email' => $email,
-                'password' => $password,
-                ]
-            );
-            return redirect()->route('login')->with('success','Created user successfully !');
-        }catch(Exception $e){
-            Log::error('Error creating user: ' . $e->getMessage());
-            return redirect()->route('register')->with('error','Created user false !');
-        }
-        
     }
 }

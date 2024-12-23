@@ -31,5 +31,4 @@ class Idea extends Model
         return $this->like->contains('user_id', $user->id);
     }
 
-
 }

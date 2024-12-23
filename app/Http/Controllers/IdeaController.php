@@ -8,6 +8,7 @@ use App\Models\Idea;
 
 use App\Services\Idea\IIdeaService;
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Log;
 
 class IdeaController extends Controller
