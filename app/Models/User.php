@@ -51,6 +51,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+
     public function like()
     {
         return $this->hasMany(Like::class);
@@ -59,5 +60,4 @@ class User extends Authenticatable
     public function isLike () {
 
     }
-
 }

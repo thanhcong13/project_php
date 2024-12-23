@@ -17,8 +17,8 @@ class RegisterController extends Controller
     {
         $this->registerService = $registerService;
     }
-    public function index()
-    {
+
+    public function index(){
         return view('register');
     }
 
@@ -32,6 +32,7 @@ class RegisterController extends Controller
             $password = $request->get('password');
             $confirm_password = $request->get('confirm-password');
             $password = bcrypt($request->get('password'));
+          
             $this->registerService->create(
                 [
                     'name' => $name,
