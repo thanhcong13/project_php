@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\IdeaRequest;
 use Illuminate\Http\Request;
 use App\Models\Idea;
+
 use App\Services\Idea\IIdeaService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -27,7 +28,6 @@ class IdeaController extends Controller
     {
         $data['content'] = $request->input('idea');
         $data['user_id'] = auth()->user()->id;
-      
         $this->ideaService->store($data);
         return redirect()->route('dashboard')->with('success', 'Idea created Successfully');
     }
@@ -35,6 +35,10 @@ class IdeaController extends Controller
     {
         $this->ideaService->delete($id);
         return redirect()->route('dashboard')->with('success', 'Idea Deleted Successfully');
+
+        $idea = Idea::create($data);
+
+        return redirect()->route('dashboard')->with('success','Idea created Successfully');
     }
     public function update($id)
     {

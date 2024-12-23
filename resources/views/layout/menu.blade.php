@@ -7,6 +7,7 @@
                         <span>Home</span></a>
                 </li>
                 <li class="nav-item">
+
                     <a class="nav-link" href="{{ route('feed') }}">
                         <span>Feed</span></a>
                 </li>
