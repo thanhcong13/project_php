@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Models\Like;
+
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +25,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
-
 Route::get('feed',[FeedController::class, 'index'])->name('feed')->middleware('auth');
 
 Route::get('/ideas/{id}', [IdeaController::class, 'index'])->name('ideas.index');

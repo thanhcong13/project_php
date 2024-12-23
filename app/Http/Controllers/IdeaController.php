@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Idea;
 use App\Services\Idea\IIdeaService;
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Log;
 
 class IdeaController extends Controller
@@ -21,6 +22,7 @@ class IdeaController extends Controller
         $idea = $this->ideaService->show($id);
         return view('idea',compact('idea'));
     }
+
     public function store(IdeaRequest $request)
     {
         $data['content'] = $request->input('idea');
