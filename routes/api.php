@@ -27,4 +27,6 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::group(['prefix' => 'comment'], function () {
     Route::post('/create-api', [CommentController::class, 'storeApi']);
+    Route::post('/create-comment', [CommentController::class, 'createCommentRealTime'])->name('comment.create-comment');
+
 });

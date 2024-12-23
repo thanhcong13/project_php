@@ -6,8 +6,11 @@
     <div>
         <button type="submit" data-comment-id="{{ $idea->id }}" class="btn btn-primary btn-sm btn-comment"> Post Comment </button>
     </div>
+    <input type="hidden" id="create-comment" data-url="{{ route('comment.create-comment') }}">
+
 {{-- </form> --}}
 <hr>
+<div id="comment">
 @foreach ($idea->comment as $comment)
     <div class="d-flex align-items-start">
         <img style="width:35px" class="me-2 avatar-sm rounded-circle"
@@ -25,3 +28,4 @@
         </div>
     </div>
 @endforeach
+</div>

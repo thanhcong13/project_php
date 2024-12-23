@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CommentRequest;
+use App\Jobs\SaveCommentJob;
 use App\Models\Comment;
 use App\Models\Idea;
 use App\Services\Comment\ICommentService;
@@ -49,6 +50,26 @@ class CommentController extends Controller
                 );
     
            return $res;
+        } catch(Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ]);
+        }
+
+    }
+    public function createCommentRealTime(CommentRequest $request)
+    {
+        try {
+            $user_id = $request->get('user_id');
+            $idea_id = $request->get('idea_id');
+            $comment = $request->get('comment');
+            
+            SaveCommentJob::dispatch([
+                'user_id' => $user_id,
+                'idea_id' => $idea_id,
+                'comment' => $comment
+            ]);
+            return response()->json(['message' => 'Created comment successfully ! ']);
         } catch(Exception $e) {
             return response()->json([
                 'error' => $e->getMessage()

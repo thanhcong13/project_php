@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Services\Comment;
 
@@ -17,17 +17,13 @@ class CommentService implements ICommentService
         $idea_id = $idea['idea_id'];
         $comment = $idea['comment'];
 
-        request()->validate([
-            'comment' => 'required'
-        ]);
-
         $this->commentRepository->store(
-        [
-            'user_id' => $user_id,
-            'idea_id' => $idea_id,
-            'comment' => $comment
-        ]);
-        
+            [
+                'user_id' => $user_id,
+                'idea_id' => $idea_id,
+                'comment' => $comment
+            ]
+        );
     }
     public function storeApi(array $idea)
     {
@@ -36,20 +32,17 @@ class CommentService implements ICommentService
             $idea_id = $idea['idea_id'];
             $comment = $idea['comment'];
 
-            request()->validate([
-                'comment' => 'required'
-            ]);
-
             $data = $this->commentRepository->store(
-            [
-                'user_id' => $user_id,
-                'idea_id' => $idea_id,
-                'comment' => $comment
-            ]);
+                [
+                    'user_id' => $user_id,
+                    'idea_id' => $idea_id,
+                    'comment' => $comment
+                ]
+            );
             return response()->json([
                 'message' => 'comment successfuly.'
             ], 200);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json([
                 'message' => $e->getMessage()
             ], 400);
