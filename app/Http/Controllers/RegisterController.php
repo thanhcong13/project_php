@@ -17,26 +17,31 @@ class RegisterController extends Controller
     {
         $this->registerService = $registerService;
     }
+
     public function index(){
         return view('register');
     }
-
-    // TODO: Neu validate failed thi lay message failed o dau
     public function register(RegisterRequest $request){
         try{
-
             $name = $request->get('name');
             $email = $request->get('email');
             $password = $request->get('password');
             $confirm_password = $request->get('confirm-password');
             $password = bcrypt($request->get('password'));
-            // $confirm_password = bcrypt($request->get('confirm-password'));
-            // Repository + Model 
-            // User::create([
-            //     'name' => $name,
-            //     'email' => $email,
-            //     'password' => $password
-            // ]);
+          
+            $this->registerService->create(
+                [
+                    'name' => $name,
+                    'email' => $email,
+                    'password' => $password,
+                ]
+            );
+            return redirect()->route('login')->with('success', 'Created user successfully !');
+        } catch (Exception $e) {
+            Log::error('Error creating user: ' . $e->getMessage());
+            return redirect()->route('register')->with('error', 'Created user false !');
+        }
+
             $this->registerService->create(
                 [
                 'name' =>$name,
