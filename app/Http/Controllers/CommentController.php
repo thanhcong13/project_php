@@ -7,8 +7,7 @@ use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
 use App\Models\Idea;
 use App\Services\Comment\ICommentService;
-
-use Illuminate\Http\Request;
+use Exception;
 
 class CommentController extends Controller
 {
@@ -35,4 +34,28 @@ class CommentController extends Controller
         return redirect()->route('dashboard' , $idea->id)->with('success', 'Comment successfully.');
 
     }
+    public function storeApi(CommentRequest $request)
+    {
+        try {
+            $user_id = $request->get('user_id');
+            $idea_id = $request->get('idea_id');
+            $comment = $request->get('comment');
+            
+            $res = $this->commentService->storeApi(
+                [
+                    'user_id' => $user_id,
+                    'idea_id' => $idea_id,
+                    'comment' => $comment
+                ]
+                );
+    
+           return $res;
+        } catch(Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ]);
+        }
+
+    }
+
 }

@@ -29,5 +29,7 @@ class Idea extends Model
     public function isLikedBy(User $user)
     {
         return $this->like->contains('user_id', $user->id);
-    }   
+    }
+
+
 }

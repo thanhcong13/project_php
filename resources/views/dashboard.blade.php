@@ -21,3 +21,7 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    <script src="{{ asset('js/comment.js') }}"></script>
+@endsection

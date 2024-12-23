@@ -28,9 +28,7 @@ class IdeaController extends Controller
     {
         $data['content'] = $request->input('idea');
         $data['user_id'] = auth()->user()->id;
-
         $this->ideaService->store($data);
-
         return redirect()->route('dashboard')->with('success', 'Idea created Successfully');
     }
     public function delete($id)
