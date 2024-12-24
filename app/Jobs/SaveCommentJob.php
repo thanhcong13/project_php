@@ -35,7 +35,7 @@ class SaveCommentJob implements ShouldQueue
     public function handle()
     {
         $comment = Comment::create($this->commentData);
-
+        
         broadcast(new NewComment($comment));
     }
 }
