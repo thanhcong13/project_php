@@ -26,14 +26,22 @@ class LoginController extends Controller
         $remember = $request->has('remember');
 
         if (Auth::attempt($cre, $remember)) {
-            if ($remember) {
-                setcookie("email", $request->get('email', ''), time() + 3600);
-                setcookie("password", $request->get('password', ''), time() + 3600);
-            } else {
-                setcookie('email', '');
-                setcookie('password', '');
+            $user = Auth::user();
+            if ($user->email_verified_at != null) {
+                if ($remember) {
+                    setcookie("email", $request->get('email', ''), time() + 3600);
+                    setcookie("password", $request->get('password', ''), time() + 3600);
+                } else {
+                    setcookie('email', '');
+                    setcookie('password', '');
+                }
+                return redirect()->route('dashboard')->with('success', 'Login successfully !');
             }
-            return redirect()->route('dashboard')->with('success', 'Login successfully !');
+            else {
+                Auth::logout();
+                return redirect()->route('login')->with('error', 'Your email address has not been verified. Please check your inbox.');
+            }
+           
         } else {
             return redirect()->route('login')->with('error', 'Login False !');
         }
@@ -42,7 +50,7 @@ class LoginController extends Controller
     public function loginApi(LoginRequest $request)
     {
         $user = User::where('email', $request->get('email'))->first();
-        if ($user && Hash::check($request->get('password'), $user->password)) {
+        if ($user && Hash::check($request->get('password'), $user->password) && $user->email_verified_at != null) {
             $token = $user->createToken('token')->plainTextToken;
 
             return response()->json([
