@@ -11,6 +11,9 @@ class CommentService implements ICommentService
     {
         $this->commentRepository = $commentRepository;
     }
+    public function show($ideaId) {
+        return $this->commentRepository->show($ideaId);
+    }
     public function store(array $idea)
     {
         $user_id = $idea['user_id'];

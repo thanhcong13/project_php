@@ -39,6 +39,7 @@ Route::post('/ideas/{idea}/unlike',[LikeController::class, 'unLike'])->name('ide
 
 
 Route::get('/profile',[ProfileController::class, 'index'])->name('profile')->middleware('auth');
+Route::post('/profile/update-avatar', [ProfileController::class, 'updateAvatar'])->name('profile.update-avatar')->middleware('auth');
 
 Route::get('/login',[LoginController::class, 'index'])->name('login');
 Route::get('/logout',[LoginController::class, 'signOut'])->name('logout');
