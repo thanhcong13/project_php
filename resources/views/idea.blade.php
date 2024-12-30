@@ -12,7 +12,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
                             <img style="width:50px" class="me-2 avatar-sm rounded-circle"
-                                src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ $idea->user->name }}" alt="{{ $idea->user->name }} Avatar">
+                                src="{{ $idea->user->img }}" alt="{{ $idea->user->name }} Avatar">
                             <div>
                                 <h5 class="card-title mb-0"><a href="#"> {{ $idea->user->name }}
                                     </a>
@@ -33,7 +33,7 @@
                     <form action="{{ route('ideas.update', $idea->id)}}" method="post">
                         @csrf
                         @method('PUT')
-                        <textarea class="fs-6 form-control mb-3" rows="1" name="idea">{!! $idea->content !!}</textarea>
+                        <textarea class="fs-6 form-control mb-3" rows="1" name="idea">{{ $idea->content }}</textarea>
                         @error('idea')
                             <span class="text-danger small">{{ $message }}</span>
                         @enderror

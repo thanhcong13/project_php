@@ -3,7 +3,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
                 <img style="width:50px" class="me-2 avatar-sm rounded-circle"
-                    src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ $idea->user->name }}" alt="{{ $idea->user->name }} Avatar">
+                    src="{{ $idea->user->img }}" alt="{{ $idea->user->name }} Avatar">
                 <div>
                     <h5 class="card-title mb-0"><a href="#"> {{ $idea->user->name }}
                         </a>
@@ -29,7 +29,7 @@
     <div class="card-body">
         <p class="fs-6 fw-light text-muted">
             <!-- TODO: Phan biet 2 cai duoi --> 
-            {!! $idea->content !!}
+            {{ $idea->content }}
         </p>
         <div class="d-flex justify-content-between">
             <div>

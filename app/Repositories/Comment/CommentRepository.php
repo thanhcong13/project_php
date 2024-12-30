@@ -3,6 +3,7 @@
 namespace App\Repositories\Comment;
 
 use App\Models\Comment;
+use App\Models\Idea;
 
 class CommentRepository implements ICommentRepository
 {
@@ -20,4 +21,10 @@ class CommentRepository implements ICommentRepository
         ]);
         
     }
+    public function show($ideaId) {
+        $query = Comment::where('idea_id' , $ideaId);
+        $comment = $query->orderBy('created' , 'DESC')->paginate(config('pagination.comment_page'));
+        return $comment;
+    }
+
 }

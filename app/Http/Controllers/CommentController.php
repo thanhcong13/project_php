@@ -20,6 +20,10 @@ class CommentController extends Controller
     {
         $this->commentService = $commentService;
     }
+    public function show($idea_id) {
+        $comments = $this->commentService->show($idea_id);
+        return view('shared.comment' , compact('$comments'));
+    }
     public function store(Idea $idea)
     {
         $user_id = auth()->user()->id;
