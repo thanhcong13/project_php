@@ -46,6 +46,8 @@ Route::post('/login-user',[LoginController::class, 'store'])->name('login.user')
 
 Route::get('/register',[RegisterController::class, 'index'])->name('register');
 Route::post('/register-user',[RegisterController::class, 'register'])->name('register.user');
+Route::post('/verify/email',[RegisterController::class, 'sendOtp'])->name('verify.otp');
+Route::get('/verify/email/{user}',[RegisterController::class, 'verifyFrom'])->name('verify.form');
 
 
 Route::get('/layout', function(){
