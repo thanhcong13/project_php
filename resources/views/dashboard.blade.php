@@ -99,4 +99,19 @@
             </div>
         </div>
     </div>
+<<<<<<< Updated upstream
 @endsection
+=======
+@endsection
+<style>
+    .lazy {
+        display: block;
+    }
+</style>
+@section('scripts')
+    <script src="{{ asset('js/comment.js') }}"></script>
+    <script>
+        $("img.lazy").show().lazyload();
+    </script>
+@endsection
+>>>>>>> Stashed changes
