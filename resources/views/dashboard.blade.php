@@ -13,7 +13,7 @@
                 <div class="mt-1">
                     {{ $ideas->links() }}
                 </div>
-                
+
             </div>
         </div>
         <div class="col-3">
