@@ -19324,6 +19324,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /***/ }),
+/***/ "./resources/css/ideas/ideas.css":
+/*!***************************************!*\
+  !*** ./resources/css/ideas/ideas.css ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
 
 /***/ "./node_modules/process/browser.js":
 /*!*****************************************!*\
@@ -19641,6 +19653,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"name":"axios","version":"0.21.4","de
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
+/******/ 			"css/ideas": 0,
 /******/ 			"css/app": 0
 /******/ 		};
 /******/ 		

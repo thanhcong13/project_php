@@ -13,10 +13,14 @@ class CreateIdeasTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('ideas')) {
+            Schema::dropIfExists('ideas');
+        }
+
         Schema::create('ideas', function (Blueprint $table) {
             $table->id();
             $table->string('content');
-            $table->unsignedInteger('likes')->default(0);
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +32,9 @@ class CreateIdeasTable extends Migration
      */
     public function down()
     {
+        Schema::table('ideas', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+        });
         Schema::dropIfExists('ideas');
     }
 }
