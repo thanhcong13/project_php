@@ -30,5 +30,9 @@ class Idea extends Model
     {
         return $this->like->contains('user_id', $user->id);
     }
+    public function image() 
+    {
+        return $this->hasMany(Image::class);
+    }
 
 }

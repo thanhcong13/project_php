@@ -16,6 +16,7 @@ class DashboardController extends Controller
     public function index()
     {
         $ideas = $this->dashboardService->show();
+
         return view("dashboard", compact('ideas'));
     }
 

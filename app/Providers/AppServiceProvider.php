@@ -9,6 +9,8 @@ use App\Repositories\Dashboard\DashboardRepository;
 use App\Repositories\Dashboard\IDashboardRepository;
 use App\Repositories\Idea\IdeaRepository;
 use App\Repositories\Idea\IIdeaRepository;
+use App\Repositories\Images\IImagesRepository;
+use App\Repositories\Images\ImagesRepository;
 use App\Repositories\Like\ILikeRepository;
 use App\Repositories\Like\LikeRepository;
 use App\Repositories\RegisterRepository\IRegisterRepository;
@@ -20,6 +22,8 @@ use App\Services\Dashboard\DashboardService;
 use App\Services\Dashboard\IDashboardService;
 use App\Services\Idea\IdeaService;
 use App\Services\Idea\IIdeaService;
+use App\Services\Images\IImagesService;
+use App\Services\Images\ImagesService;
 use App\Services\Like\ILikeService;
 use App\Services\Like\LikeService;
 use App\Services\RegisterService\IRegisterService;
@@ -53,6 +57,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(ILikeService::class, LikeService::class);
         $this->app->bind(ILikeRepository::class, LikeRepository::class);
+
+        $this->app->bind(IImagesService::class, ImagesService::class);
+        $this->app->bind(IImagesRepository::class, ImagesRepository::class);
+
 
     }
 

@@ -3,6 +3,7 @@
 namespace App\Services\Idea;
 
 use App\Repositories\Idea\IIdeaRepository;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class IdeaService implements IIdeaService
 {
@@ -29,6 +30,21 @@ class IdeaService implements IIdeaService
     public function update($id, $content)
     {
         return $this->ideaRepository->update($id , $content);
+    }
+
+    public function updateImage($imageBase64) {
+            $imageData = base64_decode(explode(',', $imageBase64)[1]);
+
+            $tempFile = tmpfile();
+            fwrite($tempFile, $imageData);
+            $tempFilePath = stream_get_meta_data($tempFile)['uri'];
+
+            $uploadedFileUrl = Cloudinary::upload($tempFilePath)->getSecurePath();
+
+            fclose($tempFile);
+
+            return $uploadedFileUrl;
+        
     }
 
 }
