@@ -6,6 +6,9 @@ use App\Http\Controllers\FeedController;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Member\DashboardController as MemberDashboardController;
+use App\Http\Controllers\Member\LoginController as MemberLoginController;
+use App\Http\Controllers\Member\RegisterController as MemberRegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Models\Like;
@@ -49,6 +52,19 @@ Route::get('/register',[RegisterController::class, 'index'])->name('register');
 Route::post('/register-user',[RegisterController::class, 'register'])->name('register.user');
 Route::post('/verify/email',[RegisterController::class, 'sendOtp'])->name('verify.otp');
 Route::get('/verify/email/{user}',[RegisterController::class, 'verifyFrom'])->name('verify.form');
+
+// MEMBER 
+
+Route::get('/member/login', [MemberLoginController::class, 'index'])->name('member.login.form');
+Route::post('/member/login', [MemberLoginController::class, 'login'])->name('member.login');
+Route::post('/member/logout', [MemberLoginController::class, 'logout'])->name('member.logout');
+
+Route::get('/member/register', [MemberRegisterController::class, 'index'])->name('member.register.form');
+Route::post('/member/register', [MemberRegisterController::class, 'registerMember'])->name('member.register');
+
+Route::group(['middleware' => ['member-auth']], function () {
+    Route::get('/member/dashboard', [MemberDashboardController::class, 'index'])->name('member.dashboard');
+});
 
 
 Route::get('/layout', function(){
