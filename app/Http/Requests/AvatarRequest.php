@@ -29,7 +29,7 @@ class AvatarRequest extends FormRequest
                 'required' ,
                 'image' ,
                 'mimes:mimes:jpeg,png,jpg,gif|',
-                'dimensions : max_width = 1000 , max_height = 1000',
+                'dimensions:max_width=1000,max_height=1000',
             ]
         ];
     }
