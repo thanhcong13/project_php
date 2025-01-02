@@ -1,3 +1,6 @@
+.action-btn{
+    cursor: pointer;
+}
 @media only screen and (min-width: 1235px) {
     .emoji-picker__wrapper{
         top: 198px !important;

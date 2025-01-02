@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\CommentController;
-
+use App\Http\Controllers\IdeaController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
+use App\Models\Idea;
 use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,3 +32,7 @@ Route::group(['prefix' => 'comment'], function () {
     Route::post('/create-api', [CommentController::class, 'storeApi']);
     Route::post('/create-comment', [CommentController::class, 'createCommentRealTime'])->name('comment.create-comment');
 });
+Route::group(['prefix' => 'ideas'], function () {
+    Route::post('/store-idea', [IdeaController::class, 'store'])->name('ideas.create-idea');
+});
+

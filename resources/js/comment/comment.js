@@ -13,8 +13,6 @@ window.Echo = new Echo({
     forceTLS: true,
 });
 
-
-
 $(document).ready(function () {
     $(".btn-comment").on("click", function () {
         let url = $("#create-comment").data("url");
@@ -45,7 +43,7 @@ $(document).ready(function () {
         const newCommentHtml = `
             <div class="d-flex align-items-start">
                 <img style="width:35px" class="me-2 avatar-sm rounded-circle"
-                    src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=${e.user.name}"
+                    src="${e.user.img}"
                     alt="${e.user.name} Avatar">
                 <div class="w-100">
                     <div class="d-flex justify-content-between">
