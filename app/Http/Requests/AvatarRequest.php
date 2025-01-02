@@ -28,7 +28,8 @@ class AvatarRequest extends FormRequest
             "avatar" => [
                 'required' ,
                 'image' ,
-                'mimes:mimes:jpeg,png,jpg,gif'
+                'mimes:mimes:jpeg,png,jpg,gif|',
+                'dimensions : max_width = 1000 , max_height = 1000',
             ]
         ];
     }

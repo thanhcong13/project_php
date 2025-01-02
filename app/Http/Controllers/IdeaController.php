@@ -38,15 +38,7 @@ class IdeaController extends Controller
             $images = $request->input('images'); 
     
             foreach ($images as $imageBase64) {
-                $imageData = base64_decode(explode(',', $imageBase64)[1]);
-    
-                $tempFile = tmpfile();
-                fwrite($tempFile, $imageData);
-                $tempFilePath = stream_get_meta_data($tempFile)['uri'];
-    
-                $uploadedFileUrl = Cloudinary::upload($tempFilePath)->getSecurePath();
-    
-                fclose($tempFile);
+                $uploadedFileUrl = $this->ideaService->updateImage($imageBase64);
     
                 $this->imageService->store([
                     'idea_id' => $idea->id,
