@@ -14,7 +14,4 @@ yarn-error.log
 /.idea
 /.vscode
 /.public
-<<<<<<< HEAD
-=======
 public/js/comment.js
->>>>>>> 1436ce8525758acc314cbca986b5960c99b7e913
