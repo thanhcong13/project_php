@@ -25,6 +25,16 @@ class RegisterService implements IRegisterService
             ]
         );
     }
+    public function createMember(array $data)
+    {
+        return $this->registerRepository->createMember(
+            [
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => $data['password']
+            ]
+        );
+    }
 
 }
 
