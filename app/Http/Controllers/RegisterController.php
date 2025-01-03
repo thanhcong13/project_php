@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RegisterRequest;
-use App\Mail\OptVerificationMail;
+
 use App\Models\User;
-use App\Services\RegisterService\IRegisterService;
+
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\RegisterRequest;
+use App\Services\RegisterService\IRegisterService;
+use App\Mail\OptVerificationMail;
 
 class RegisterController extends Controller
 {

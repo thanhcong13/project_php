@@ -5,6 +5,7 @@
             <div class="col-12 col-sm-8 col-md-6">
                 @include('shared.success-message')
                 @include('shared.error-message')
+
                 <form class="form mt-5" action="{{ route('login.user') }}" method="POST">
                     @csrf
                     <h3 class="text-center text-dark">Login</h3>
@@ -21,6 +22,7 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="password" class="text-dark">Password:</label><br>
+
                         <input type="password" name="password" id="password" class="form-control"
                             @if ( isset($_COOKIE['password']) )
                                 value="{{ $_COOKIE['password'] }}"

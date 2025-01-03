@@ -33,14 +33,14 @@
                 @if ($idea->image->count() == 1)
                     @foreach ($idea->image as $img)
                         <div class="col-md-12 mb-3">
-                            <img class="w-100" src="{{ $img->url }}" alt="Image">
+                            <img class="w-100 lazy" data-original="{{ $img->url }}" alt="Image">
                         </div>
                     @endforeach
                 @endif
                 @if ($idea->image->count() > 1)
                     @foreach ($idea->image as $img)
                         <div class="col-md-6 mb-3">
-                            <img class="w-100" src="{{ $img->url }}" alt="Image">
+                            <img class="w-100 lazy" data-original="{{ $img->url }}" alt="Image">
                         </div>
                     @endforeach
                 @endif

@@ -21,7 +21,16 @@
         </div>
     </div>
 @endsection
-
+<style>
+    .lazy {
+        display: block;
+    }
+</style>
 @section('scripts')
     <script src="{{ asset('js/comment.js') }}"></script>
+    <script>
+        $("img.lazy").show().lazyload();
+    </script>
 @endsection
+
+
