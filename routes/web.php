@@ -9,7 +9,6 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Models\Like;
-
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+
 Route::get('feed',[FeedController::class, 'index'])->name('feed')->middleware('auth');
 
 Route::get('/ideas/{id}', [IdeaController::class, 'index'])->name('ideas.index');
@@ -45,10 +45,12 @@ Route::get('/login',[LoginController::class, 'index'])->name('login');
 Route::get('/logout',[LoginController::class, 'signOut'])->name('logout');
 Route::post('/login-user',[LoginController::class, 'store'])->name('login.user');
 
+
 Route::get('/register',[RegisterController::class, 'index'])->name('register');
 Route::post('/register-user',[RegisterController::class, 'register'])->name('register.user');
 Route::post('/verify/email',[RegisterController::class, 'sendOtp'])->name('verify.otp');
 Route::get('/verify/email/{user}',[RegisterController::class, 'verifyFrom'])->name('verify.form');
+
 
 
 Route::get('/layout', function(){

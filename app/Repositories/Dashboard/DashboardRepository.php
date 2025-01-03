@@ -10,11 +10,14 @@ class DashboardRepository implements IDashboardRepository
 {
     public function show()
     {
-        $ideas = Idea::orderBy('created_at', 'DESC')->paginate(5);
-        if (request()->has('search')) {
-            $ideas = Idea::where('content', 'LIKE', '%' . request()->get('search', '') . '%')->orderBy('created_at', 'DESC')->paginate(5);
-        }
-        return $ideas;
+        $query = Idea::with('image')->orderBy('created_at', 'DESC');
         
+        if (request()->has('search')) {
+            $search = request()->get('search', '');
+            $query->where('content', 'LIKE', '%' . $search . '%');
+        }
+
+        return $query->paginate(5);
     }
+    
 }
